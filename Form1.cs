@@ -23,7 +23,7 @@ namespace WebBrowser.Cef
             cefSettings.CefCommandLineArgs.Add("--disable-site-isolation-trials", "1");//关闭站点隔离策略,允许跨域
 
             CefSharp.Cef.Initialize(cefSettings);
-            chromiumWebBrowser = new CefSharp.WinForms.ChromiumWebBrowser("https://xuqingkai.gitee.io/peis.web");
+            chromiumWebBrowser = new CefSharp.WinForms.ChromiumWebBrowser("https://xuqingkai.github.io/my.element/");
             chromiumWebBrowser.Dock = DockStyle.Fill;
 
             chromiumWebBrowser.RegisterJsObject("external", new JsObject());
