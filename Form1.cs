@@ -1,4 +1,5 @@
 ﻿using CefSharp;
+using CefSharp.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,12 +19,15 @@ namespace WebBrowser.Cef
         {
             InitializeComponent();
 
+            string address = "https://xuqingkai.github.io/my.element/";
+            address = "https://xuqingkai.gitee.io/peis.web/";
+
             CefSharp.CefSettings cefSettings = new CefSharp.CefSettings();
             cefSettings.CefCommandLineArgs.Add("--disable-web-security", "1");//关闭同源策略,允许跨域
             cefSettings.CefCommandLineArgs.Add("--disable-site-isolation-trials", "1");//关闭站点隔离策略,允许跨域
 
             CefSharp.Cef.Initialize(cefSettings);
-            chromiumWebBrowser = new CefSharp.WinForms.ChromiumWebBrowser("https://xuqingkai.github.io/my.element/");
+            chromiumWebBrowser = new CefSharp.WinForms.ChromiumWebBrowser(address);
             chromiumWebBrowser.Dock = DockStyle.Fill;
 
             chromiumWebBrowser.RegisterJsObject("external", new JsObject());
@@ -37,7 +41,7 @@ namespace WebBrowser.Cef
             //chromiumWebBrowser.ExecuteScriptAsync("CefSharp.BindObjectAsync('external');");
             //string js = System.IO.File.ReadAllText(System.Windows.Forms.Application.StartupPath + "./jquery.min.js");
 
-            string function = "(function(){window.alert('test');})();";
+            string function = "(function(){for(var key in window.external){window.alert(key);}})();";
             chromiumWebBrowser.ExecuteScriptAsync(function);
         }
 
@@ -49,18 +53,19 @@ namespace WebBrowser.Cef
             task.Wait();
             if (task.Result.Result != null)
             {
-                MessageBox.Show(task.Result.Result.ToString());
+                MessageBox.Show("js return：" + task.Result.Result.ToString());
             }
         }
     }
     public class JsObject
     {
+        public string msgText = "msg";
         public void test()
         {
             MessageBox.Show("this in C#");
         }
         public void swipeIDCard(object obj) {
-            MessageBox.Show(obj.ToString());
+            MessageBox.Show("JsObject：" + obj.ToString());
         }
     }
     public class CEFKeyBoardHander : IKeyboardHandler
