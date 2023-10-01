@@ -21,6 +21,7 @@ namespace WebBrowser.Cef
 
             string address = "https://xuqingkai.github.io/my.element/";
             address = "https://xuqingkai.gitee.io/peis.web/";
+            address = "http://localhost:9528/";
 
             CefSharp.CefSettings cefSettings = new CefSharp.CefSettings();
             cefSettings.CefCommandLineArgs.Add("--disable-web-security", "1");//关闭同源策略,允许跨域

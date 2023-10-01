@@ -240,9 +240,9 @@
             // 
             this.btnSet.Location = new System.Drawing.Point(872, 3);
             this.btnSet.Name = "btnSet";
-            this.btnSet.Size = new System.Drawing.Size(50, 23);
+            this.btnSet.Size = new System.Drawing.Size(58, 23);
             this.btnSet.TabIndex = 34;
-            this.btnSet.Text = "配置";
+            this.btnSet.Text = "配置(&S)";
             this.btnSet.UseVisualStyleBackColor = true;
             this.btnSet.Click += new System.EventHandler(this.btnSet_Click);
             // 
